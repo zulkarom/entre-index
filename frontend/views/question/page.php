@@ -103,7 +103,7 @@ chart_gauge_01.setTextField(document.getElementById(\"gauge-text\"));
 
 	
 	<h3><?=QFormat::qheader($category->cat_text, $category->cat_text_bi)?></i></h3>
-	<table class="table table-striped table-hover" style="font-size:16px;">
+	<div class="table-responsive"><table class="table table-striped table-hover" style="font-size:16px;">
 <thead>
 <tr>
 <th colspan="2">
@@ -231,7 +231,7 @@ if($category->question_type == 1){
 		?>
 	
 </tbody>
-</table>
+</table></div>
 <div class="form-group" align="center">
 <br />
 <?php 
