@@ -22,6 +22,8 @@ Thumbs.db
 
 # composer itself is not needed
 composer.phar
+composer.json
+composer.lock
 
 # Mac DS_Store Files
 .DS_Store
@@ -33,3 +35,16 @@ phpunit.phar
 
 # vagrant runtime
 /.vagrant
+
+# config
+/frontend/config
+/backend/config
+/common/config
+
+# web
+/backend/web
+/frontend/web
+
+#uploaded
+
+/uploaded
