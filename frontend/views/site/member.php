@@ -23,7 +23,8 @@ $this->title= 'MEMBER PAGE';
 				
 			</div>
 			<br />
-			<div class="row" style="text-align:justify">
+			<?php 
+	/*  <div class="row" style="text-align:justify">
 			
 			<div class="col-lg-6"><p>Several indices have been established to measure innovativeness level of firms in an industry or a nation. In Malaysia at least three indices INNOCERT (SME Corp), NCII (AIM) and Competitive Index (NPC) were established, however less emphasis is given to the human expect in innovation. For this, SMEII is established to give a more holistic innovation measure which covers both the technical as well as human aspect. This is more important for micro and small enterprise as the human aspect plays a more dominant role. SMEII measures the capability and competencies of an enterprise based on the elements of organizational, financing, owner, product or process, performance and creative output. It can be used at both the macro and micro level of entrepreneurship. At the macro level, the index can indicate the innovativeness of entrepreneurs in a country or industry, while at the micro level it can measure the innovativeness of the individual entrepreneur. It indicates the strength and weaknesses of each or group of entrepreneurs for each of the elements by comparing it with the benchmark established using the 15 most innovative entrepreneurs suggested by SME Corp, on those said elements.</p></div>
 				
@@ -31,7 +32,8 @@ $this->title= 'MEMBER PAGE';
 					
 				</div>
 			
-			</div>
+			</div>*/
+			?>
 			<br />
 			
 			<?php 
