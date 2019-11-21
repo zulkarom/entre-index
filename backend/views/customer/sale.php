@@ -12,6 +12,43 @@ $this->title = 'QUESTION SET';
 $this->params['breadcrumbs'][] = ['label' => 'Customer', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php $form = ActiveForm::begin(); ?>
+<div class="row">
+<div class="col-md-6">
+<div class="box">
+<div class="box-header"></div>
+<div class="box-body">
+
+
+<div class="row">
+<div class="col-md-6">
+<?php
+
+$yesno = [0 => 'YES', 1 => 'NO'];
+
+echo $form->field($model, 'is_block')
+->dropDownList($yesno)->label('Allow Access');
+
+echo $form->field($model, 'sale_amt', [
+    'addon' => ['prepend' => ['content'=>'RM']]
+]);
+
+$model->currpage = $model->page->curr_page;
+echo $form->field($model, 'currpage')->label('Current Page');
+
+
+ ?>
+</div>
+</div>
+
+        
+    
+      
+
+</div>
+</div>
+</div>
+<div class="col-md-6">
 <div class="box">
 <div class="box-header"></div>
 <div class="box-body"><div class="customer-view">
@@ -34,37 +71,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div></div>
 </div>
-
-<div class="box">
-<div class="box-header"></div>
-<div class="box-body">
-<?php $form = ActiveForm::begin(); ?>
-
-<div class="row">
-<div class="col-md-3">
-<?php
-
-$yesno = [0 => 'YES', 1 => 'NO'];
-
-echo $form->field($model, 'is_block')
-->dropDownList($yesno)->label('Allow Access');
-
-echo $form->field($model, 'sale_amt', [
-    'addon' => ['prepend' => ['content'=>'RM']]
-]);
-
-
- ?>
-</div>
 </div>
 
-        
-    
-        <div class="form-group">
+
+
+</div>
+
+
+  <div class="form-group">
             <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
-
-</div>
-</div>
 

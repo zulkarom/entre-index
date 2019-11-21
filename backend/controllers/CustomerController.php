@@ -80,7 +80,13 @@ class CustomerController extends Controller
 			$model->sale_at = time();
 			$model->updated_at = time();
 			if($model->save()){
-				Yii::$app->session->addFlash('success', "Sale Updated.");
+				$page = $model->page;
+				$page->scenario = 'answer';
+				$page->curr_page = $model->currpage;
+				if(!$page->save()){
+					$page->flashError();
+				}
+				Yii::$app->session->addFlash('success', "User Setting Updated.");
 				return $this->redirect('index');
 				
 				

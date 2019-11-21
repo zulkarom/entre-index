@@ -101,4 +101,18 @@ class Page extends \yii\db\ActiveRecord
 	public function getCustomer(){
 		return $this->hasOne(Customer::className(), ['id' => 'customer_id']);
 	}
+	
+	public function flashError(){
+        if($this->getErrors()){
+            foreach($this->getErrors() as $error){
+                if($error){
+                    foreach($error as $e){
+                        Yii::$app->session->addFlash('error', $e);
+                    }
+                }
+            }
+        }
+
+    }
+
 }

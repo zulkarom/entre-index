@@ -18,6 +18,7 @@ use frontend\models\Page;
  */
 class Customer extends \yii\db\ActiveRecord
 {
+	public $currpage;
     /**
      * @inheritdoc
      */
@@ -39,7 +40,7 @@ class Customer extends \yii\db\ActiveRecord
 			
 			[['sale_amt', 'is_block', 'sale_at', 'updated_at'], 'required', 'on' => 'sale'],
 			
-            [['user_id', 'biz_type', 'is_block', 'updated_at'], 'integer'],
+            [['user_id', 'biz_type', 'is_block', 'updated_at', 'currpage'], 'integer'],
 			
 			[['sale_amt'], 'number'],
 			
@@ -78,5 +79,19 @@ class Customer extends \yii\db\ActiveRecord
 	public function getBizTypes(){
 		return $this->hasOne(BizTypes::className(), ['id' => 'biz_type']);
 	}
+	
+	public function flashError(){
+        if($this->getErrors()){
+            foreach($this->getErrors() as $error){
+                if($error){
+                    foreach($error as $e){
+                        Yii::$app->session->addFlash('error', $e);
+                    }
+                }
+            }
+        }
+
+    }
+
 
 }
