@@ -40,6 +40,8 @@ phpunit.phar
 /frontend/config
 /backend/config
 /common/config
+/frontend/web
+/backend/web
 
 # web
 /backend/web

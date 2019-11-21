@@ -15,6 +15,8 @@ use yii\filters\AccessControl;
 //use yii\db\Connection;
 use backend\models\QuestionMain;
 use backend\models\Result;
+use common\models\ResultPdf;
+use common\models\PChartUser;
 
 /**
  * CustomerController implements the CRUD actions for Customer model.
@@ -65,6 +67,44 @@ class CustomerController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+	
+	public function actionPdf($id){
+		//generate chart
+		$model = $this->findCustomerUser($id);
+		$result = $model->result;
+		$result_id = $result->id;
+		
+		$identifier = rand(1000000, 9999999);
+		PChartUser::overallChart($result_id, $identifier);
+		PChartUser::mainChart($result_id, $identifier);
+		PChartUser::catChart($result_id, 1,$identifier);
+		PChartUser::catChart($result_id, 2,$identifier);
+		PChartUser::catChart($result_id, 3,$identifier);
+		
+		
+		$pdf = new ResultPdf;
+		$pdf->image = $identifier;
+		$pdf->result = $result;
+		$pdf->generatePdf();
+		
+		//delete chart
+		unlink('temp/chart-overall-'.$identifier.'.png');
+		unlink('temp/chart-main-'.$identifier.'.png');
+		unlink('temp/chart-1-cat-'.$identifier.'.png');
+		unlink('temp/chart-2-cat-'.$identifier.'.png');
+		unlink('temp/chart-3-cat-'.$identifier.'.png');
+	}
+	
+	protected function findResult($id)
+    {
+		$id = Yii::$app->user->identity->id;
+		$customer = Customer::findOne(['user_id' => $id]);
+        if (($model = Result::findOne(['customer_id' => $customer->id ])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 	
 	/**
@@ -259,7 +299,7 @@ class CustomerController extends Controller
 	
 	protected function findCustomerUser($id)
     {
-        if (($model = Customer::findCustomerUser($id)) !== null) {
+        if (($model = Customer::findOne(['user_id' => $id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

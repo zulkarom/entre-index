@@ -449,7 +449,7 @@ EOD;
 	
 	public function genCatChart($id){
 
-		$html ='<div align="center"><img width="400" src="temp/chart-1-cat-'.$this->image .'.png" /></div><br />
+		$html ='<div align="center"><img width="400" src="temp/chart-'.$id.'-cat-'.$this->image .'.png" /></div><br />
 		
 		';
 		

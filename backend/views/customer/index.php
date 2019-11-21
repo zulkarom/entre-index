@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				 'format' => 'html',
 				 'value' => function($model){
 					 $page = $model->page->curr_page;
-					 if($page == 18){
+					 if($page == 16){
 						 return '<span class="label label-success">FINISHED</span>';
 					 }else{
 						 return '<span class="label label-info">PAGE '.$page.'</span>';
@@ -72,19 +72,25 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn',
 				 'contentOptions' => ['style' => 'width: 20.7%'],
 				'visible'=> Yii::$app->user->isGuest ? false : true,
-				'template' => '{update} {login}',
+				'template' => '{set} {login} {pdf} ',
 				'buttons'=>[
+					'pdf'=>function ($url, $model) {
+						return Html::a(
+						'<span class="fa fa-file-pdf-o"></span> PDF',
+						['customer/pdf', 'id' => $model->user_id],
+						['class' => 'btn btn-danger btn-sm', 'target' => '_blank']);
+					},
 					'login'=>function ($url, $model) {
 						return Html::a(
-						'<span class="glyphicon glyphicon-user"></span> User Page',
+						'<span class="glyphicon glyphicon-user"></span>',
 						['customer/login-as', 'id' => $model->user_id],
 						['class' => 'btn btn-primary btn-sm', 'target' => '_blank']);
 					},
-					'update'=>function ($url, $model) {
+					'set'=>function ($url, $model) {
 						return Html::a(
-						'<span class="glyphicon glyphicon-cog"></span> Update',
+						'<span class="glyphicon glyphicon-cog"></span>',
 						['customer/sale', 'id' => $model->id],
-						['class' => 'btn btn-warning btn-sm', 'data-method' => 'post']);
+						['class' => 'btn btn-warning btn-sm']);
 					}
 				]
 			
