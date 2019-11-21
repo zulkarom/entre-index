@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				 'format' => 'html',
 				 'value' => function($model){
 					 $page = $model->page->curr_page;
-					 if($page == 16){
+					 if($page >= 16){
 						 return '<span class="label label-success">FINISHED</span>';
 					 }else{
 						 return '<span class="label label-info">PAGE '.$page.'</span>';
