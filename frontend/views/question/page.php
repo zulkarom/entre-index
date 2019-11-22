@@ -130,10 +130,10 @@ if($category->question_type == 1){
 <th colspan="5" width="<?=$width?>%">
 <?php 
 if($category->question_type == 1){
-	
-	foreach(QuestionLikert::find()->all() as $lk){
-		echo QFormat::qlikert($lk->likert_value, $lk->likert_text, $lk->likert_text_bi) . '<br>';
+	foreach(QuestionLikert::find()->where(['likert_cat' => $category->likert_cat])->all() as $lk){
+		echo QFormat::qlikert($lk->likert_value, $lk->likert_text, $lk->likert_text_bi) . '<br />';
 	}
+
 ?>
 	
 <?php } ?>
