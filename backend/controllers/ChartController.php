@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
@@ -31,15 +31,15 @@ class ChartController extends Controller
     }
 
 	public function actionOverallChart($id = 0){
-		return PChart::overallChart();
+		return PChart::overallChart($id);
 	}
 	
 	public function actionMainChart($id = 0){
-		return PChart::mainChart();
+		return PChart::mainChart($id);
 	}
 	
-	public function actionCatChart($prime){
-		return PChart::catChart(0, $prime);
+	public function actionCatChart($id, $prime){
+		return PChart::catChart($id, $prime);
 	}
 	
 	public function innocapchart($id = 0){

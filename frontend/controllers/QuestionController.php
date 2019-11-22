@@ -115,14 +115,6 @@ class QuestionController extends Controller
 				->where(['cat_id' => $cat]) 
 				-> all();
 
-				
-		/* $arr = array();
-		if($qarr){
-			foreach($qarr as $q){
-				$arr[] = 'q_' . $q;
-			}
-		} */
-
 		$model = Result::find()
 				->where(['customer_id' => $page->customer_id])
 				->one();

@@ -54,7 +54,12 @@ echo $form->field($model, 'currpage')->label('Current Page');
 <div class="box-body"><div class="customer-view">
 
     <p>
-        <?= Html::a('Back to List', ['index'], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Back to List', ['index'], ['class' => 'btn btn-warning']) ?>
+		
+		<?= Html::a(
+						'<span class="glyphicon glyphicon-user"></span> User Page',
+						['customer/login-as', 'id' => $model->user_id],
+						['class' => 'btn btn-primary btn-sm', 'target' => '_blank']);?>
 
     </p>
 
@@ -62,6 +67,7 @@ echo $form->field($model, 'currpage')->label('Current Page');
         'model' => $model,
         'attributes' => [
             'id',
+			'user.fullname',
 			'user.email',
 			'user.created_at:datetime',
 			//'page.curr_page'

@@ -40,11 +40,11 @@ class ResultController extends Controller
 	public function actionPdf(){
 		//generate chart
 		$identifier = rand(1000000, 9999999);
-		PChart::overallChart($identifier);
-		PChart::mainChart($identifier);
-		PChart::catChart(1,$identifier);
-		PChart::catChart(2,$identifier);
-		PChart::catChart(3,$identifier);
+		PChart::overallChart(0,$identifier);
+		PChart::mainChart(0,$identifier);
+		PChart::catChart(0,1,$identifier);
+		PChart::catChart(0,2,$identifier);
+		PChart::catChart(0,3,$identifier);
 		
 		$result = $this->findResultIdentity();
 		$pdf = new ResultPdf;

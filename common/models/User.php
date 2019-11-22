@@ -6,6 +6,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use backend\models\Customer;
 
 /**
  * User model
@@ -41,6 +42,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return '{{%user}}';
     }
+	
+	public function getCustomer(){
+        return $this->hasOne(Customer::className(), ['user_id' => 'id']);
+    }
+
 
     /**
      * @inheritdoc

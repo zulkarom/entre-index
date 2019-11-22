@@ -2,6 +2,8 @@
 
 namespace frontend\models\user; 
 
+use backend\models\Customer;
+
 class User extends \dektrium\user\models\User
 {
 	const STATUS_DELETED = 0;
@@ -14,6 +16,10 @@ class User extends \dektrium\user\models\User
 		$rules['fullnameRequired'] = ['fullname', 'required'];
         
         return $rules;
+    }
+	
+	public function getCustomer(){
+        return $this->hasOne(Customer::className(), ['user_id' => 'id']);
     }
 	
 

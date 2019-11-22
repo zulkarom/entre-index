@@ -9,8 +9,18 @@ use CpChart\Image;
 use backend\models\Customer;
 use backend\models\Result;
 
-class PChartUser 
+class PChart 
 {
+	private static function findResultIdentity()
+    {
+		$customer = Yii::$app->user->identity->customer->id;
+        if (($model = Result::findOne(['customer_id' => $customer->id ])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+	
 	private static function findResult($id)
     {
         if (($model = Result::findOne($id)) !== null) {
@@ -20,8 +30,8 @@ class PChartUser
         }
     }
 	
-	public static function overallChart($result_id, $identifier = null){
-		$result = self::findResult($result_id);
+	public static function overallChart($identifier = null){
+		$result = self::findResultIdentity();
 		$prime = $result->getPrimeResult();
 		
 		$innocap = $prime[2]->result ;
@@ -44,8 +54,8 @@ class PChartUser
 		
 	}
 	
-	public static function mainChart($result_id, $identifier = null){
-		$result = self::findResult($result_id);
+	public static function mainChart($identifier = null){
+		$result = self::findResultIdentity();
 		$prime = $result->getPrimeResult();
 		
 		$data = array();
@@ -65,8 +75,8 @@ class PChartUser
 		
 	}
 	
-	public static function catChart($result_id, $id, $identifier = null){
-		$result = self::findResult($result_id);
+	public static function catChart($id, $identifier = null){
+		$result = self::findResultIdentity();
 		$prime = $result->getPrimeResult();
 		
 		$data = array();

@@ -16,7 +16,8 @@ use yii\filters\AccessControl;
 use backend\models\QuestionMain;
 use backend\models\Result;
 use common\models\ResultPdf;
-use common\models\PChartUser;
+use common\models\PChart;
+use frontend\models\Page;
 
 /**
  * CustomerController implements the CRUD actions for Customer model.
@@ -64,8 +65,11 @@ class CustomerController extends Controller
      */
     public function actionView($id)
     {
+		$result = $this->findResult($id);
+		$page = $this->findPage($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'result' => $result,
+			'page' => $page
         ]);
     }
 	
@@ -76,11 +80,11 @@ class CustomerController extends Controller
 		$result_id = $result->id;
 		
 		$identifier = rand(1000000, 9999999);
-		PChartUser::overallChart($result_id, $identifier);
-		PChartUser::mainChart($result_id, $identifier);
-		PChartUser::catChart($result_id, 1,$identifier);
-		PChartUser::catChart($result_id, 2,$identifier);
-		PChartUser::catChart($result_id, 3,$identifier);
+		PChart::overallChart($result_id, $identifier);
+		PChart::mainChart($result_id, $identifier);
+		PChart::catChart($result_id, 1,$identifier);
+		PChart::catChart($result_id, 2,$identifier);
+		PChart::catChart($result_id, 3,$identifier);
 		
 		
 		$pdf = new ResultPdf;
@@ -95,17 +99,6 @@ class CustomerController extends Controller
 		unlink('temp/chart-2-cat-'.$identifier.'.png');
 		unlink('temp/chart-3-cat-'.$identifier.'.png');
 	}
-	
-	protected function findResult($id)
-    {
-		$id = Yii::$app->user->identity->id;
-		$customer = Customer::findOne(['user_id' => $id]);
-        if (($model = Result::findOne(['customer_id' => $customer->id ])) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
 	
 	/**
      * Displays a single Customer model.
@@ -295,11 +288,29 @@ class CustomerController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-	//findCustomerUser()
+	
+	
+	protected function findResult($id)
+    {
+        if (($model = Result::findOne(['customer_id' => $id ])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 	
 	protected function findCustomerUser($id)
     {
         if (($model = Customer::findOne(['user_id' => $id])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+	
+	protected function findPage($id)
+    {
+        if (($model = Page::findOne(['customer_id' => $id ])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

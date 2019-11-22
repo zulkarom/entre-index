@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn',
 				 'contentOptions' => ['style' => 'width: 20.7%'],
 				'visible'=> Yii::$app->user->isGuest ? false : true,
-				'template' => '{set} {login} {pdf} ',
+				'template' => '{set} {view} {pdf} ',
 				'buttons'=>[
 					'pdf'=>function ($url, $model) {
 						return Html::a(
@@ -80,17 +80,17 @@ $this->params['breadcrumbs'][] = $this->title;
 						['customer/pdf', 'id' => $model->user_id],
 						['class' => 'btn btn-danger btn-sm', 'target' => '_blank']);
 					},
-					'login'=>function ($url, $model) {
+					'view'=>function ($url, $model) {
 						return Html::a(
-						'<span class="glyphicon glyphicon-user"></span>',
-						['customer/login-as', 'id' => $model->user_id],
-						['class' => 'btn btn-primary btn-sm', 'target' => '_blank']);
+						'<span class="glyphicon glyphicon-eye-open"></span> View',
+						['customer/view', 'id' => $model->id],
+						['class' => 'btn btn-primary btn-sm']);
 					},
 					'set'=>function ($url, $model) {
 						return Html::a(
 						'<span class="glyphicon glyphicon-cog"></span>',
 						['customer/sale', 'id' => $model->id],
-						['class' => 'btn btn-warning btn-sm']);
+						['class' => 'btn btn-default btn-sm']);
 					}
 				]
 			
