@@ -38,13 +38,13 @@ jQuery(\'.opttd\').click(function() {
 <div class="block-content">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6">
-					<h2 class="section_title text-center"></h2>
+				<div class="col-md-9">
+					<?=QFormat::qcat($category->para_quest, $category->para_quest_bi)?>
 				</div>
 				
-				<div class="col-md-6">
+				<div class="col-md-3">
 				
-				<div style="width:80px;" class="pull-right">
+				<div class="pull-right">
 	<div style="text-align:center">Progress</div>
                         <canvas width="80" height="40" id="chart_gauge_01" class="" style="width: 80px; height: 40px;"></canvas>
                         <div class="goal-wrapper">
@@ -102,12 +102,13 @@ chart_gauge_01.setTextField(document.getElementById(\"gauge-text\"));
 
 
 	
-	<h3><?=QFormat::qheader($category->cat_text, $category->cat_text_bi)?></i></h3>
+	
+	
 	<div class="table-responsive"><table class="table table-striped table-hover" style="font-size:16px;">
 <thead>
 <tr>
 <th colspan="2">
-<?=QFormat::qcat($category->para_quest, $category->para_quest_bi)?>
+<h4><?=QFormat::qheader($category->cat_text, $category->cat_text_bi)?></i></h4>
 </th>
 
 <?php
@@ -130,10 +131,21 @@ if($category->question_type == 1){
 <th colspan="5" width="<?=$width?>%">
 <?php 
 if($category->question_type == 1){
+	echo '<div class="row">';
+	
+	$i = 1;
 	foreach(QuestionLikert::find()->where(['likert_cat' => $category->likert_cat])->all() as $lk){
-		echo QFormat::qlikert($lk->likert_value, $lk->likert_text, $lk->likert_text_bi) . '<br />';
+		
+		echo ($i == 1 or $i == 3) ? '<div class="col-md-6">' : '';
+		
+		echo QFormat::qlikert($lk->likert_value, $lk->likert_text, $lk->likert_text_bi);
+		
+		echo ($i == 2 or $i == 4) ? '</div>' : '<br />';
+		
+	$i++;
+	
 	}
-
+	echo '</div>';
 ?>
 	
 <?php } ?>
