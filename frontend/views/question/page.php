@@ -71,39 +71,19 @@ var chart_gauge_settings = {
 		  strokeColor: '#F0F3F3',
 		  generateGradient: true
 	  };
-	  
-
-			
 var chart_gauge_01_elem = document.getElementById('chart_gauge_01');
 var chart_gauge_01 = new Gauge(chart_gauge_01_elem).setOptions(chart_gauge_settings);
-
-
-
 chart_gauge_01.maxValue = 100;
 chart_gauge_01.animationSpeed = 20;
 chart_gauge_01.set(". $per .");
 chart_gauge_01.setTextField(document.getElementById(\"gauge-text\"));
-
-
 ");
 						
 ?>
+</div></div>
 </div>
-				</div>
-				
-				
-				
-				
-			</div>
 			
-			
-			<?php $form = ActiveForm::begin(); ?>
-
-
-
-	
-	
-	
+<?php $form = ActiveForm::begin(); ?>
 	<div class="table-responsive"><table class="table table-striped table-hover" style="font-size:16px;">
 <thead>
 <tr>
@@ -173,7 +153,8 @@ if($category->question_type == 1){
 					
 					if($category->question_type == 1){
 						if($model->{$fd} == $x){
-							$active = ' activecell';
+							//$active = ' activecell';
+							$active = '';
 						}else{
 							$active = '';
 						}
@@ -213,22 +194,28 @@ if($category->question_type == 1){
 					echo $form->field($model, $fd)->radio(['label'=> '', 'value' => $val, 'required' => true, 'uncheck' => null])->label(false);
 					
 					if($x == 1){
-						if($q->ext_type == 3){
+						if($q->ext_type == 3){ //checkbox
 							echo '<i>(you can tick more than one)</i><br /><br />';
 							$options = $q->questionOptions;
 							$b = 1;
 							foreach($options as $cb){
-								/* echo '<div>';
-								echo $cb->option_text_bi;
-								echo '</div>'; */
-								
 								echo $form->field($model, 'q_' . $q->id . '_' . $b)->checkbox(array('label'=> $cb->option_text_bi))
 								;
+								if($cb->has_text == 1){
+									echo $form->field($model, 'q_'.$q->id . '_' . $b . '_other')->textInput()->label(false);
+								$this->registerJs('
+									jQuery("#result-q_'.$q->id . '_' . $b . '_other").click(function() {
+										jQuery("#result-q_'.$q->id . '_' . $b . '").prop("checked", true);
+					
+									});
+								');
+								}
 							$b++;
 							}
 						}else if($q->ext_type == 2){
+							//textarea
 							$sub = $q->questionSub;
-							echo $form->field($model, 'q_'.$q->id . '_text')->textarea(['rows' => 3])->label($sub->sub_text_bi);
+							echo $form->field($model, 'q_'.$q->id . '_text')->textarea(['rows' => 4])->label($sub->sub_text_bi);
 						}
 						
 					}

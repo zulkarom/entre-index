@@ -1,3 +1,3 @@
-ALTER TABLE `question_cat` ADD `likert_cat` INT NOT NULL COMMENT '1= agree dll, 2 = not at all' AFTER `question_type`;
-ALTER TABLE `question_likert` ADD `likert_cat` INT NOT NULL AFTER `likert_value`;
-INSERT INTO `question_likert` (`id`, `likert_text`, `likert_text_bi`, `likert_value`, `likert_cat`) VALUES (NULL, '', 'Not At All', '1', '2'), (NULL, '', 'Rarely', '2', '2'), (NULL, '', 'Sometimes', '3', '2'), (NULL, '', 'Always', '4', '2');
+ALTER TABLE `result` ADD `q_53_5_other` VARCHAR(100) NOT NULL AFTER `q_53_5`;
+ALTER TABLE `result` ADD `p_54_4_other` VARCHAR(100) NOT NULL AFTER `q_54_4`;
+ALTER TABLE `result` ADD `q_51_5_other` VARCHAR(100) NOT NULL AFTER `q_51_5`;
