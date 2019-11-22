@@ -130,20 +130,29 @@ if($category->question_type == 1){
 					
 					
 					if($category->question_type == 1){
-						 echo $x;
+						$label = $x;
 						$val = $x;
 					}else{
 						if($x == 1){
-							echo 'YES';
+							$label = 'YES';
 							$val = 1;
 						}else{
-							echo 'NO';
+							$label = 'NO';
 							$val = 0;
 						}
 					}
 					
+					if($model->$fd == $val){
+						echo '<span style="color:white;background-color:black">&nbsp;&nbsp; ' . $label . '&nbsp;&nbsp;</span>';
+					}else{
+						echo $label;
+					}
 					
-					echo $form->field($model, $fd)->radio(['label'=> '', 'value' => $val, 'required' => true, 'uncheck' => null])->label(false);
+					
+					echo '<br />';
+					
+					//echo $form->field($model, $fd)->radio(['label'=> '', 'value' => $val, 'required' => true, 'uncheck' => null])->label(false);
+					
 					
 					if($x == 1){
 						if($q->ext_type == 3){ //checkbox
