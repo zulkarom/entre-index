@@ -8,11 +8,11 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CustomerSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'User';
+$this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-  <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+  <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <div class="box">
 <div class="box-header"></div>
@@ -23,11 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 				[
-				 'label' => 'Full Name' ,
+				 'label' => 'Name' ,
 				 'attribute' => 'fullname',
 				 'value' => 'user.fullname'
 				 ],
@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				 
 				 [
 				 'label' => 'Email' ,
-				 'attribute' => 'username',
 				 'value' => 'user.username'
 				 ],
 				 
@@ -43,7 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				 
 				 [
 				 'label' => 'Allow Access' ,
-				 'attribute' => 'is_block',
 				 'format' => 'html',
 				 'value' => function($model){
 					 $block = $model->is_block;

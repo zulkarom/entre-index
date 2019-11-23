@@ -14,8 +14,8 @@ use kartik\widgets\ActiveForm;
 ]); ?>
     
 <div class="row">
-<div class="col-md-8"></div>
-<div class="col-md-4"><?= $form->field($model, 'box_search', ['addon' => ['prepend' => ['content'=>'<span class="glyphicon glyphicon-search"></span>']]])->label(false)->textInput(['placeholder' => "SEARCH..."]) ?></div>
+<div class="col-md-6"></div>
+<div class="col-md-6"><?= $form->field($model, 'box_search', ['addon' => ['prepend' => ['content'=>'<span class="glyphicon glyphicon-search"></span> Search']]])->label(false)->textInput(['placeholder' => "Type name or email and press enter ..."]) ?></div>
 </div>
 
 <?php ActiveForm::end(); ?>

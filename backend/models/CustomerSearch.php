@@ -24,7 +24,7 @@ class CustomerSearch extends Customer
     public function rules()
     {
         return [
-			[['username', 'fullname', 'biz_type_name'], 'string'],
+			[['username', 'fullname', 'biz_type_name', 'box_search'], 'string'],
             [['phone', 'username', 'fullname', 'biz_type_name'], 'safe'],
         ];
     }
@@ -77,6 +77,8 @@ class CustomerSearch extends Customer
             // $query->where('0=1');
             return $dataProvider;
         }
+		
+	
 
 		$query->orFilterWhere(['like', 'user.username', $this->box_search]);
 		$query->orFilterWhere(['like', 'user.fullname', $this->box_search]);
