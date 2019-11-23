@@ -73,6 +73,24 @@ class CustomerController extends Controller
         ]);
     }
 	
+	public function actionDelete($id){
+		$customer = $this->findModel($id);
+		$page = Page::findOne(['customer_id' => $customer->id]);
+		$page->delete();
+		$result = Result::findOne(['customer_id' => $customer->id]);
+		$result->delete();
+		$user = $customer->user;
+		$user->delete();
+		$customer->delete();
+		Yii::$app->session->addFlash('success', "The user deleted.");
+		return $this->redirect(['index']);
+		//delete customer
+		//result
+		//user
+		//page
+		
+	}
+	
 	public function actionPdf($id){
 		//generate chart
 		$model = $this->findCustomerUser($id);

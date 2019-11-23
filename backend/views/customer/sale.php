@@ -83,9 +83,27 @@ echo $form->field($model, 'currpage')->label('Current Page');
 
 </div>
 
-
-  <div class="form-group">
+<div class="row">
+<div class="col-md-6">  <div class="form-group">
             <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
+        </div></div>
+
+<div class="col-md-6" align="right">
+  <div class="form-group" >
+            <?= Html::a('Delete User', ['delete', 'id' => $model->id], ['class' => 'btn btn-danger',
+			'data' => [
+                'confirm' => 'Are you sure you want to delete this user? This also will delete the user\'s answer and this action cannot be undone.',
+                'method' => 'post',
+            ],
+
+			
+			]) ?>
         </div>
+</div>
+
+</div>
+
+
+
     <?php ActiveForm::end(); ?>
 
