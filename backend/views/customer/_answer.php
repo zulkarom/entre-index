@@ -167,17 +167,23 @@ if($category->question_type == 1){
 									
 								if($cb->has_text == 1){
 									$p = 'q_'.$q->id . '_' . $b . '_other';
-									echo '(' . $model->$p . ')' ;
+									if($model->$p){
+										echo '(' . $model->$p . ')' ;
+									}
+									
 								
 								}
 							$b++;
 							}
 						}else if($q->ext_type == 2){
 							//textarea
-							$sub = $q->questionSub;
-							echo '<i>' . $sub->sub_text_bi . '</i>:<br />';
-							$p = 'q_'.$q->id . '_text';
-							echo $model->$p;
+							if($model->$fd == 1){
+								$sub = $q->questionSub;
+								echo '<i>' . $sub->sub_text_bi . '</i>:<br />';
+								$p = 'q_'.$q->id . '_text';
+								echo $model->$p;
+							}
+							
 						}
 						
 					}

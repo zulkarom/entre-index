@@ -55,7 +55,11 @@ class CustomerSearch extends Customer
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-			'sort'=> ['defaultOrder' => ['updated_at'=>SORT_DESC]]
+			'sort'=> ['defaultOrder' => ['updated_at'=>SORT_DESC]],
+			'pagination' => [
+                'pageSize' => 100,
+            ],
+
         ]);
 		
 		 $dataProvider->sort->attributes['username'] = [
