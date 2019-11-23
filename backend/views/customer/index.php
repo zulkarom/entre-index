@@ -73,16 +73,24 @@ $this->params['breadcrumbs'][] = $this->title;
 				'template' => '{set} {view} {pdf} ',
 				'buttons'=>[
 					'pdf'=>function ($url, $model) {
-						return Html::a(
-						'<span class="fa fa-file-pdf-o"></span> PDF',
-						['customer/pdf', 'id' => $model->user_id],
-						['class' => 'btn btn-danger btn-sm', 'target' => '_blank']);
+						$page = $model->page->curr_page;
+						if($page >= 16){
+							return Html::a(
+							'<span class="fa fa-file-pdf-o"></span> PDF',
+							['customer/pdf', 'id' => $model->user_id],
+							['class' => 'btn btn-danger btn-sm', 'target' => '_blank']);
+						}
+						
 					},
 					'view'=>function ($url, $model) {
-						return Html::a(
-						'<span class="glyphicon glyphicon-eye-open"></span> View',
-						['customer/view', 'id' => $model->id],
-						['class' => 'btn btn-primary btn-sm']);
+						$page = $model->page->curr_page;
+						if($page >= 16){
+							return Html::a(
+							'<span class="glyphicon glyphicon-eye-open"></span> View',
+							['customer/view', 'id' => $model->id],
+							['class' => 'btn btn-primary btn-sm']);
+						}
+						
 					},
 					'set'=>function ($url, $model) {
 						return Html::a(
