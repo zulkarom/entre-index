@@ -510,7 +510,7 @@ foreach($this->result->getMainResult($id) as $cat){
 
 		$html .=  '<td>'. $item->cat_text_bi .'</td>';
 		
-		$str_desc .= '<br /><br /><b>' . $pr_num . '.1.'.$x.' ' . $cat->cat[0]->cat_text_bi . '</b> ';
+		$str_desc .= '<br /><br /><b>' . $pr_num . '.1.'.$x.' ' . $item->cat_text_bi . '</b> ';
 		
 		$desc = $item->description;
 		
