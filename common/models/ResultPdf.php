@@ -337,7 +337,7 @@ EOD;
 	}
 	
 	public function writeMainTitle(){
-		$this->pdf->AddPage("P");
+		//$this->pdf->AddPage("P");
 		$this->pdf->SetFont('helvetica', '', 12);
 		
 		$html ='<br /><div><b>2.2 Result By Dimension</b></div>
