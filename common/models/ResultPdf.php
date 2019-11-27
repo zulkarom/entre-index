@@ -498,7 +498,7 @@ foreach($this->result->getMainResult($id) as $cat){
 		
 		$str_desc .= '<b><br /><br />' . $pr_num . '.'.$i.'.1 ' . $cat->cat[0]->cat_text_bi . '</b><br /><br /> ';
 		
-		$str_desc .=   $cat->cat[0]->desc_intro;
+		$str_desc .=   $cat->cat[0]->desc_intro . '<br /><br />';
 		
 		$desc = $cat->cat[0]->description;
 		$html .=  '<td>';
