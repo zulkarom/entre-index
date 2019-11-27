@@ -54,5 +54,32 @@ class QuestionMain extends \yii\db\ActiveRecord
     }
 	
 	
+	
+	public function getResultByUniversity(){
+		$cat = $this->questionCat;
+		$str = '';
+		$i = 1;
+		foreach($cat as $c){
+			$comma = $i == 1 ? '' : ',';
+			$str .= $comma.$c->strSelect(true);
+			
+		$i++;
+		}
+		
+		
+		$rows = (new \yii\db\Query())
+		->select('result.p_6_3, COUNT(result.p_6_3) as kira, ' . $str)
+		->from('result')
+		->innerJoin('page', 'page.customer_id = result.customer_id')
+		->andWhere(['>=', 'page.curr_page', 16])
+		->groupBy('result.p_6_3')
+		->orderBy('result.p_6_3 ASC')
+		->all();
+		
+		return $rows;
+		
+	}
+	
+	
 
 }

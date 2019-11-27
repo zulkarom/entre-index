@@ -124,6 +124,8 @@ use stdClass;
  */
 class Result extends \yii\db\ActiveRecord
 {
+	public $avgval;
+	
     /**
      * @inheritdoc
      */

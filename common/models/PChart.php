@@ -125,7 +125,7 @@ class PChart
 		 $MyData = new Data();    
 		 $MyData->addPoints($data,"ScoreA");   
 		 $MyData->addPoints($benchmark,"ScoreB");  
-		 $MyData->setSerieDescription("ScoreA","INSTITUTION"); 
+		 $MyData->setSerieDescription("ScoreA","INDIVIDUAL"); 
 		 $MyData->setSerieDescription("ScoreB","BENCHMARK"); 
 
 		 /* Define the absissa serie */ 

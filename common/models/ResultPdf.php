@@ -94,7 +94,7 @@ class ResultPdf
 		$this->pdf->AddPage("P");
 	}
 	
-	public function xwriteCover(){
+	public function writeCover(){
 		$this->pdf->SetFont('times', '', 20);
 		
 		$html ='<div align="center">

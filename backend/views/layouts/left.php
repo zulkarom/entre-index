@@ -34,24 +34,26 @@
 					//['label' => 'Dashboard', 'icon' => 'dashboard', 'url' => ['/site']],
                     
 					['label' => 'Users', 'icon' => 'user', 'url' => ['/customer']],
+					
+					['label' => 'Analysis', 'icon' => 'pie-chart', 'url' => ['/analysis']],
 
 					
 					///customer
 					[
-                        'label' => 'Question',
-                        'icon' => 'user',
+                        'label' => 'Questions',
+                        'icon' => 'question',
                         'url' => '#',
                         'items' => [
                             
 							['label' => 'Question Text', 'icon' => 'question', 'url' => ['/question'],],
 							
-							['label' => 'Sub Dimensions', 'icon' => 'file', 'url' => ['question-cat/index'],],
+							['label' => 'Indicators', 'icon' => 'file', 'url' => ['question-cat/index'],],
 							
 							['label' => 'Dimensions', 'icon' => 'file', 'url' => ['question-main/index'],],
 							
 							['label' => 'Main Dimensions', 'icon' => 'file', 'url' => ['question-prime/index'],],
 							
-							['label' => 'Description', 'icon' => 'file', 'url' => ['question-cat/description'],],
+							['label' => 'Description', 'icon' => 'list', 'url' => ['question-cat/description'],],
 							
 
                         ],

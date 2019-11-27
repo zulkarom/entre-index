@@ -36,7 +36,7 @@ use dmstr\widgets\Alert;
 </div>
 
 <footer class="main-footer">
-    Copyright &copy; 2019 <a href="#">SMEII</a>. All rights
+    Copyright &copy; 2019 <a href="#">ELI</a>. All rights
     reserved.
 </footer>
 

@@ -44,4 +44,10 @@ class QuestionPrime extends \yii\db\ActiveRecord
             'prime_name_bi' => 'Prime Name Bi',
         ];
     }
+	
+	public function getQuestionMains()
+    {
+        return $this->hasMany(QuestionMain::className(), ['prime_id' => 'id']);
+    }
+
 }

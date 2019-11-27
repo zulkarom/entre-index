@@ -1,0 +1,16 @@
+ALTER TABLE `question_prime` ADD `description` TEXT NOT NULL AFTER `benchmark`;
+UPDATE `question_prime` SET `description` = 'Entrepreneurial capability of a Higher Learning Institution is not the result of a single ability, but it flows from a collection of abilities and other capabilities, which means an internal potential for generation of new ideas, identification of new market opportunities, new services and products through resources and capabilities of the organization. Thus, entrepreneurial capability completes as the result of several relationships and communication among organizational, resources, qualifications, and connections with other organizations. In these questionnaires, the innovation capacities of HEIs are measured in terms of organizational, investment and financing.' WHERE `question_prime`.`id` = 1;
+ALTER TABLE `question_main` ADD `description` TEXT NOT NULL AFTER `benchmark`;
+UPDATE `question_main` SET `description` = 'University is comprised of people who are governed socially by a set of vision, mission, principles, philosophies and strategies, which drive them to meet or to pursue agreeable goals, collectively. Since higher learning Institution are considered as an open system, they can affect others and are affected by their environment. In almost all cases, all organizations have a structure, culture, people and ecosystem that determine the relationships between the different activities and the people in the organization. These factors subdivide and assign roles, responsibilities, tasks and authority that each person has to carry out.' WHERE `question_main`.`id` = 1;
+ALTER TABLE `question_cat` ADD `description` TEXT NOT NULL AFTER `para_quest`;
+UPDATE `question_cat` SET `description` = 'Organizational structure refers to how an organization arranges people, lines of authority, communications, duties, jobs and rights to meet the organization’s vision, mission, objective and strategy. The structure will help determine how roles, power and responsibilities are assigned, controlled and coordinated, and also how information flow between the different levels in the business hierarchy being managed. ' WHERE `question_cat`.`id` = 1;
+UPDATE `question_cat` SET `description` = 'Organizational culture is defined as the underlying beliefs, assumptions, values and ways of thinking and interacting that contribute to the unique social and psychological environment of an organization' WHERE `question_cat`.`id` = 2;
+ALTER TABLE `question_main` ADD `sql_col` VARCHAR(100) NOT NULL AFTER `description`;
+
+
+
+
+
+mean by indicator overall - by university
+institution -> individual
+impact  bar chart

@@ -17,6 +17,8 @@ use Yii;
  */
 class QuestionCat extends \yii\db\ActiveRecord
 {
+	
+	
     /**
      * @inheritdoc
      */
@@ -95,4 +97,45 @@ class QuestionCat extends \yii\db\ActiveRecord
 		
 		
 	}
+	
+	public function question_no(){
+		$result = $this->question;
+		$array = [];
+		foreach($result as $row){
+			$array[] = $row->id;
+		}
+		return $array;
+	}
+	
+	public function strSelect($name = false){
+		if(!$name){
+			$name = 'avgval';
+		}else{
+			$name = $this->sql_col;
+		}
+		$q = $this->question_no();
+		$kira = count($q);
+		$str = 'AVG((';
+		$i = 1;
+		foreach($q as $v){
+			$plus = $i == 1 ? '' : '+';
+			$str .= $plus . 'q_' . $v;
+		$i++;
+		}
+		
+		$str .= ')/'.$kira.') as ' . $name . ' ';
+		return $str;
+	}
+	
+	
+	public function getAverage(){
+		return Result::find()
+		->select($this->strSelect())
+		->innerJoin('page', 'page.customer_id = result.customer_id')
+		->where(['>=', 'page.curr_page', 16])
+		->one()->avgval;
+		
+	}
+	
+	
 }
