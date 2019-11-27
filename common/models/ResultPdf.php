@@ -424,11 +424,13 @@ EOD;
 	}
 	
 	public function writeCatAll(){
+		$p = 1;
 		foreach($this->prime as $pr){
 			
 			$this->genCatTitle($pr);
 			$this->genCatChart($pr->id);
-			$this->genCatTable($pr->id);
+			$this->genCatTable($pr->id, $p);
+		$p++;
 		}
 	}
 	
@@ -463,7 +465,7 @@ EOD;
 		$this->pdf->writeHTML($tbl, true, false, false, false, '');
 	}
 	
-	public function genCatTable($id){
+	public function genCatTable($id, $p){
 		$str_desc = '';
 		$this->pdf->SetFont('helvetica', '', 10);
 		$html ='
@@ -488,9 +490,15 @@ foreach($this->result->getMainResult($id) as $cat){
 		$html .=  '<td rowspan="'.$rowspan.'">'. $cat->main_name_bi .'</td>';
 		$pr_num = $id + 2;
 		$str_desc .= ' <br /><br /><br /><b>' . $pr_num . '.'.$i.' ' . $cat->main_name_bi . '</b>';
+		
+		
 		$html .=  '<td>'. $cat->cat[0]->cat_text_bi .'</td>';
 		
-		$str_desc .= '<b><br /><br />' . $pr_num . '.1.1 ' . $cat->cat[0]->cat_text_bi . '</b><br /><br /> ';
+		
+		
+		$str_desc .= '<b><br /><br />' . $pr_num . '.'.$i.'.1 ' . $cat->cat[0]->cat_text_bi . '</b><br /><br /> ';
+		
+		$str_desc .=   $cat->cat[0]->desc_intro;
 		
 		$desc = $cat->cat[0]->description;
 		$html .=  '<td>';
@@ -513,7 +521,9 @@ foreach($this->result->getMainResult($id) as $cat){
 
 		$html .=  '<td>'. $item->cat_text_bi .'</td>';
 		
-		$str_desc .= '<br /><br /><b>' . $pr_num . '.1.'.$x.' ' . $item->cat_text_bi . '</b> ';
+		$str_desc .= '<br /><br /><b>' . $pr_num . '.'.$i.'.'.$x.' ' . $item->cat_text_bi . '</b> ';
+		
+		$str_desc .=   '<br /><br />' . $item->desc_intro;
 		
 		$desc = $item->description;
 		
