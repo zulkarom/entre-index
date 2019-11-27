@@ -48,12 +48,13 @@ class AnalysisController extends Controller
         ]);
     }
 	
-	public function actionUniversity($main)
+	public function actionUniversity($main, $s = null)
     {
          $qmain = QuestionMain::findOne($main);
 
       return $this->render('university', [
             'qmain' => $qmain,
+			'sort' => $s
         ]);
     }
 

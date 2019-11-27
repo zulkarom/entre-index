@@ -55,7 +55,7 @@ class QuestionMain extends \yii\db\ActiveRecord
 	
 	
 	
-	public function getResultByUniversity(){
+	public function getResultByUniversity($sort = null){
 		$cat = $this->questionCat;
 		$str = '';
 		$i = 1;
@@ -65,6 +65,19 @@ class QuestionMain extends \yii\db\ActiveRecord
 			
 		$i++;
 		}
+		$sort_col = 'result.p_6_3 ASC';
+		
+		if($sort == 'kira'){
+			$sort_col = 'kira DESC';
+		}
+		
+		if($sort){
+			$r = QuestionCat::findOne($sort);
+			if($r){
+				$sort_col = $r->sql_col . ' DESC';
+			}
+		}
+		
 		
 		
 		$rows = (new \yii\db\Query())
@@ -73,7 +86,7 @@ class QuestionMain extends \yii\db\ActiveRecord
 		->innerJoin('page', 'page.customer_id = result.customer_id')
 		->andWhere(['>=', 'page.curr_page', 16])
 		->groupBy('result.p_6_3')
-		->orderBy('result.p_6_3 ASC')
+		->orderBy( $sort_col)
 		->all();
 		
 		return $rows;

@@ -95,7 +95,7 @@ class ResultPdf
 	}
 	
 	public function writeCover(){
-		$this->pdf->SetFont('times', '', 20);
+		$this->pdf->SetFont('helvetica', '', 20);
 		
 		$html ='<div align="center">
 <img src="images/umk.png" /><br />
@@ -136,7 +136,7 @@ EOD;
 	}
 	
 	public function writeBizInfoTitle(){
-		$this->pdf->SetFont('times', '', 14);
+		$this->pdf->SetFont('helvetica', '', 14);
 		
 		$html ='<br /><div><b>1. Business Information</b></div>
 		<br />
@@ -150,7 +150,7 @@ EOD;
 	}
 	
 	public function writeBizInfoTable(){
-		$this->pdf->SetFont('times', '', 10);
+		$this->pdf->SetFont('helvetica', '', 10);
 		
 		if($this->result->p_5 == 999){
 			$activity = 'Others ('.$this->result->p_5_other .')';
@@ -259,7 +259,7 @@ EOD;
 	}
 	
 	public function writeResultTitle(){
-		$this->pdf->SetFont('times', '', 14);
+		$this->pdf->SetFont('helvetica', '', 14);
 		
 		$html ='<br /><div><b>2. Result</b></div>
 		';
@@ -272,7 +272,7 @@ EOD;
 	}
 	
 	public function writeOverallTitle(){
-		$this->pdf->SetFont('times', '', 12);
+		$this->pdf->SetFont('helvetica', '', 12);
 		
 		$html ='<br /><div><b>2.1 Main Result</b></div>
 		<br />
@@ -301,9 +301,9 @@ EOD;
 
 	
 	public function writeOverallTable(){
-		$this->pdf->SetFont('times', '', 10);
+		$this->pdf->SetFont('helvetica', '', 10);
 		$html ='
-		<table border="1" cellpadding="8">
+		<table border="1" cellpadding="8" nobr="true">
 		<tr style="font-weight:bold">
 		<td width="5%">#</td>
 		<td width="60%">OVERALL RESULT</td>
@@ -338,7 +338,7 @@ EOD;
 	
 	public function writeMainTitle(){
 		$this->pdf->AddPage("P");
-		$this->pdf->SetFont('times', '', 12);
+		$this->pdf->SetFont('helvetica', '', 12);
 		
 		$html ='<br /><div><b>2.2 Result By Dimension</b></div>
 		<br />
@@ -365,7 +365,7 @@ EOD;
 	}
 	
 	public function writeMainTable(){
-		$this->pdf->SetFont('times', '', 10);
+		$this->pdf->SetFont('helvetica', '', 10);
 		$html ='
 		<table border="1" cellpadding="8">
 		<tr style="font-weight:bold">
@@ -425,20 +425,23 @@ EOD;
 	
 	public function writeCatAll(){
 		foreach($this->prime as $pr){
-			$num = $pr->id + 2 ;
-			$this->genCatTitle($num . '. '. ucwords( strtolower($pr->prime_name_bi)));
+			
+			$this->genCatTitle($pr);
 			$this->genCatChart($pr->id);
 			$this->genCatTable($pr->id);
 		}
 	}
 	
-	public function genCatTitle($title){
+	public function genCatTitle($pr){
 		$this->pdf->AddPage("P");
-		$this->pdf->SetFont('times', '', 12);
-		
-		$html ='<br /><div><b>'.$title.'</b></div>
+		$this->pdf->SetFont('helvetica', '', 12);
+		$num = $pr->id + 2 ;
+		$html ='<br /><div><b>'.$num . '. '. ucwords( strtolower($pr->prime_name_bi)).'</b></div>
 		<br />
 		';
+		$html .=  '<span style="font-size:10pt">' . $pr->description . '</span>';
+		
+		$html .= '<br />';
 		
 		$tbl = <<<EOD
 		$html
@@ -462,13 +465,13 @@ EOD;
 	
 	public function genCatTable($id){
 		$str_desc = '';
-		$this->pdf->SetFont('times', '', 10);
+		$this->pdf->SetFont('helvetica', '', 10);
 		$html ='
 		<table border="1" cellpadding="5">
 		<tr style="font-weight:bold">
 		<td width="5%">#</td>
 		<td width="30%">DIMENSION</td>
-		<td width="30%">SUB DIMENSION</td>
+		<td width="30%">INDICATORS</td>
 		<td width="15%">SCORE</td>
 		<td width="20%">BENCHMARK</td>
 		</tr>

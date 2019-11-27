@@ -7,8 +7,9 @@ use yii\helpers\Url;
 /* @var $searchModel backend\models\ResultSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Analysis';
+$this->title = 'Overall Analysis';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="result-index">
 
